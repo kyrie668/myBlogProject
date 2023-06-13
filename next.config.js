@@ -10,9 +10,6 @@ const nextConfig = {
         appDir: true,
         serverComponentsExternalPackages: ['mongoose'],
     },
-    images: {
-        remotePatterns: [{ hostname: 'res.cloudinary.com', protocol: 'http', port: '' }],
-    },
     webpack(config) {
         config.experiments = {
             ...config.experiments,
