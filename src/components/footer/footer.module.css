@@ -1,0 +1,24 @@
+.container{
+    background: rgb(14 55 126 / 14%);
+}
+.wrapper{
+    display: flex;
+    justify-content: space-around;
+    padding-left: 50px;
+}
+.wrapper >.detail{
+    display: flex;
+    flex:1;
+    flex-direction: column;
+}
+.wrapper >.detail > div{
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.wrapper >.detail >.contact{
+    color:#1677ff
+}
+.wrapper >.detail >span{
+    margin-bottom: 12px;
+}

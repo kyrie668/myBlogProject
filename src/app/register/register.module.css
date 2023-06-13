@@ -1,0 +1,51 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: animation 2s forwards;
+    background: url('../../../public/login.png') 0 0 no-repeat;
+    background-size: 100% 100%;
+    flex: 1;
+}
+.wrapper {
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 15px 30px;
+    width: 500px;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 20px;
+    color: rgba(59, 69, 99, 1);
+    margin: 11px 0px;
+}
+.btn,
+.btn:hover,
+.btn:focus {
+    background: linear-gradient(90deg, #052275, #0a51c4);
+    box-shadow: 0 3px 6px 0 rgba(0, 79, 213, 0.25);
+    border: none;
+    text-shadow: none;
+    border-radius: 16px;
+    font-size: 12px;
+    margin-top: 12px;
+    width: 100%;
+    height: 40px;
+}
+
+@keyframes animation {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

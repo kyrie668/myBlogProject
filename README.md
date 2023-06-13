@@ -1,34 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 项目介绍
 
-## Getting Started
+使用Next.js（基于 React 的轻量级框架）作为开发框架、ant-design作为UI框架开发的SSR项目
+Next.js官方文档：[https://www.nextjs.cn/docs/getting-started]
+第一次接触Next.js和开发后端api，写得不好请见谅....
+项目功能有：登录、注册、发布博客(鼠标悬浮在头像上可以操作该功能)、修改博客、删除博客、查询博客、点赞、评论等功能
 
-First, run the development server:
+
+
+## 安装依赖
+
+1.先确保安装好依赖:
+
+```bash
+npm install
+# or
+yarn 
+
+```
+
+2.本地启动mongod服务
+
+下载mongondb下载地址：[https://www.mongodb.com/try/download/community]
+
+启动mongodb 服务
+```bash
+mongod
+```
+
+连接本地mongodb 服务
+```bash
+mongo
+```
+请确保mongodb服务下存在my-blog-project名称的数据库
+.env配置文件中：MONGODB_URI=mongodb://localhost:27017/my-blog-project
+
+
+## 运行项目
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
