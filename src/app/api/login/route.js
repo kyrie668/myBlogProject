@@ -10,6 +10,19 @@ export async function POST(req) {
         const { email: curEmail, password: curPsw } = await req.json();
         // 判断邮箱是否已经注册
         let data = await User.findOne({ email: curEmail });
+        if (!data) {
+            return new Response(
+                JSON.stringify({
+                    code: 401,
+                    data: null,
+                    message: '邮箱或密码错误！',
+                    success: false,
+                }),
+                {
+                    status: 401,
+                }
+            );
+        }
         const { password, email, ...other } = data._doc;
         // // 比对密码和邮箱
         let bol = password === curPsw && email === curEmail;
@@ -31,7 +44,7 @@ export async function POST(req) {
                 JSON.stringify({
                     code: 401,
                     data: data,
-                    message: '用户名、邮箱或密码错误！',
+                    message: '邮箱或密码错误！',
                     success: false,
                 }),
                 {
