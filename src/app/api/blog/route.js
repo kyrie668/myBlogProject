@@ -40,6 +40,37 @@ export async function POST(req) {
     try {
         await db.connect();
         const body = await req.json();
+
+        console.log('body', body);
+        // 校验是否存在有效的authorId
+        if (!body.authorId) {
+            return new Response(
+                JSON.stringify({
+                    code: 400,
+                    data: null,
+                    message: '用户不合法',
+                    success: false,
+                }),
+                {
+                    status: 400,
+                }
+            );
+        }
+
+        const user = await User.findById(body.authorId);
+        if (!user) {
+            return new Response(
+                JSON.stringify({
+                    code: 400,
+                    data: null,
+                    message: '用户不合法',
+                    success: false,
+                }),
+                {
+                    status: 400,
+                }
+            );
+        }
         const data = await Blog.create({ ...body });
         const { ...newBlog } = data._doc;
 
@@ -55,11 +86,12 @@ export async function POST(req) {
             }
         );
     } catch (error) {
+        console.log('error', error);
         return new Response(
             JSON.stringify({
                 code: 500,
                 data: null,
-                message: error.message,
+                message: error,
                 success: false,
             }),
             {
