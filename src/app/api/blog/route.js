@@ -7,20 +7,56 @@ import User from '@/models/User';
 export async function GET(req) {
     try {
         await db.connect();
-        const blogs = await Blog.find({});
-        // const blogs = await Blog.find({}).limit(16).populate('authorId');
-        return new Response(
-            JSON.stringify({
-                code: 200,
-                data: blogs,
-                message: '操作成功！',
-                success: true,
-            }),
-            {
-                status: 200,
+        const contentType = req.headers.get('content-type');
+        if (contentType !== 'application/json') {
+            const blogs = await Blog.find({});
+            return new Response(
+                JSON.stringify({
+                    code: 200,
+                    data: blogs,
+                    message: '操作成功！',
+                    success: true,
+                }),
+                {
+                    status: 200,
+                }
+            );
+        }
+        const authorId = req.headers.get('token');
+
+        // 若req传入了authorId，则获取该用户的博客列表
+        if (authorId) {
+            const user = await User.findById(authorId);
+            // 校验是否存在有效的authorId
+            if (!user) {
+                return new Response(
+                    JSON.stringify({
+                        code: 400,
+                        data: null,
+                        message: '用户不合法',
+                        success: false,
+                    }),
+                    {
+                        status: 400,
+                    }
+                );
             }
-        );
+
+            const blogs = await Blog.find({ authorId });
+            return new Response(
+                JSON.stringify({
+                    code: 200,
+                    data: blogs,
+                    message: '操作成功！',
+                    success: true,
+                }),
+                {
+                    status: 200,
+                }
+            );
+        }
     } catch (error) {
+        console.log('error', error);
         return new Response(
             JSON.stringify({
                 code: 500,
